@@ -26,13 +26,13 @@ public class JobConfiguration {
 //                .build();
 //    }
 
-    @Bean
-    public Job job2(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
-      return new JobBuilder("job2",jobRepository)
-              .start(step3(jobRepository, platformTransactionManager)).on("COMPLETED")
-              .to(step4(jobRepository, platformTransactionManager))
-              .from(step4(jobRepository, platformTransactionManager)).end().build();
-    }
+//    @Bean
+//    public Job job2(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
+//      return new JobBuilder("job2",jobRepository)
+//              .start(step3(jobRepository, platformTransactionManager)).on("COMPLETED")
+//              .to(step4(jobRepository, platformTransactionManager))
+//              .from(step4(jobRepository, platformTransactionManager)).end().build();
+//    }
 
     @Bean
     public Step step1(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
@@ -54,11 +54,11 @@ public class JobConfiguration {
 
     @Bean
     public Step step3(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
-        return new StepBuilder("step8", jobRepository).
+        return new StepBuilder("step3", jobRepository).
                 tasklet(new Tasklet() {
                     @Override
                     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-                       System.out.println("In Step8");
+                       System.out.println("In Step3");
                         return RepeatStatus.FINISHED;
                     }
                 }, platformTransactionManager).
@@ -67,11 +67,11 @@ public class JobConfiguration {
 
     @Bean
     public Step step4(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
-        return new StepBuilder("step9", jobRepository).
+        return new StepBuilder("step4", jobRepository).
                 tasklet(new Tasklet() {
                     @Override
                     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-                        System.out.println("In Step9");
+                        System.out.println("In Step4");
                         return RepeatStatus.FINISHED;
                     }
                 }, platformTransactionManager).
