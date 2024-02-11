@@ -28,10 +28,10 @@ public class FlowLastConfiguration {
         },transactionManager).build();
     }
 
-    @Bean
-    public Job job4(JobRepository jobRepository, PlatformTransactionManager transactionManager, Flow flow){
-        return new JobBuilder("job4", jobRepository)
-                .start(step8(jobRepository,transactionManager))
-                .on("COMPLETED").to(flow).end().build();
-    }
+//    @Bean
+//    public Job job4(JobRepository jobRepository, PlatformTransactionManager transactionManager, Flow flow){
+//        return new JobBuilder("job4", jobRepository)
+//                .start(step8(jobRepository,transactionManager))
+//                .on("COMPLETED").to(flow).end().build();
+//    }
 }
