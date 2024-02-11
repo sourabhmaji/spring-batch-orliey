@@ -15,23 +15,23 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-public class FlowFirstConfiguration {
+public class FlowLastConfiguration {
 
     @Bean
-    public Step step7(JobRepository jobRepository, PlatformTransactionManager transactionManager){
-        return new StepBuilder("step7",jobRepository).tasklet(new Tasklet() {
+    public Step step8(JobRepository jobRepository, PlatformTransactionManager transactionManager){
+        return new StepBuilder("step8",jobRepository).tasklet(new Tasklet() {
             @Override
             public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-                System.out.println("In step7 FlowFirstConfiguration");
+                System.out.println("Step8 execution in FlowLastConfiguration");
                 return RepeatStatus.FINISHED;
             }
         },transactionManager).build();
     }
 
-//    @Bean
-//    public Job job3(JobRepository jobRepository, PlatformTransactionManager transactionManager, Flow flow){
-//        return new JobBuilder("job3",jobRepository).start(flow)
-//                .next(step7(jobRepository,transactionManager))
-//                .end().build();
-//    }
+    @Bean
+    public Job job4(JobRepository jobRepository, PlatformTransactionManager transactionManager, Flow flow){
+        return new JobBuilder("job4", jobRepository)
+                .start(step8(jobRepository,transactionManager))
+                .on("COMPLETED").to(flow).end().build();
+    }
 }
