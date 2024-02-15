@@ -2,12 +2,10 @@ package com.spring.batch.springBatch.config;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.job.builder.FlowBuilder;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.batch.core.repository.JobRepository;
-import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -58,10 +56,9 @@ public class SplitConfiguration {
         return flowBuilder.build();
      }
 
-     @Bean
+/*     @Bean
      public Job job5(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
         return new JobBuilder("job5", jobRepository).start(flow3(jobRepository, platformTransactionManager))
                 .split(new SimpleAsyncTaskExecutor()).add(flow2(jobRepository, platformTransactionManager)).end().build();
-     }
-
+     }*/
 }
