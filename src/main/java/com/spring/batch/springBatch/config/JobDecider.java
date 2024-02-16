@@ -66,11 +66,14 @@ public class JobDecider {
 
     @Bean
     public Job job(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
-        return new JobBuilder("job6", jobRepository)
+        return new JobBuilder("job9", jobRepository)
                 .start(startStep(jobRepository,platformTransactionManager))
                 .next(decider())
                 .from(decider()).on("ODD").to(oddStep(jobRepository, platformTransactionManager))
                 .from(decider()).on("EVEN").to(evenStep(jobRepository, platformTransactionManager))
-                .from(decider()).on("*").to(evenStep(jobRepository,platformTransactionManager)).end().build();
+                .from(oddStep(jobRepository, platformTransactionManager)).on("*").to(decider())
+             /*   .from(decider()).on("ODD").to(oddStep(jobRepository, platformTransactionManager))
+                .from(decider()).on("EVEN").to(evenStep(jobRepository, platformTransactionManager)) not needed because looping*/
+                .end().build();
     }
 }
