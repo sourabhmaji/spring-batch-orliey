@@ -64,7 +64,7 @@ public class JobDecider {
         return new OddDecider();
     }
 
-    @Bean
+/*    @Bean
     public Job job(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
         return new JobBuilder("job9", jobRepository)
                 .start(startStep(jobRepository,platformTransactionManager))
@@ -72,8 +72,8 @@ public class JobDecider {
                 .from(decider()).on("ODD").to(oddStep(jobRepository, platformTransactionManager))
                 .from(decider()).on("EVEN").to(evenStep(jobRepository, platformTransactionManager))
                 .from(oddStep(jobRepository, platformTransactionManager)).on("*").to(decider())
-             /*   .from(decider()).on("ODD").to(oddStep(jobRepository, platformTransactionManager))
-                .from(decider()).on("EVEN").to(evenStep(jobRepository, platformTransactionManager)) not needed because looping*/
+             *//*   .from(decider()).on("ODD").to(oddStep(jobRepository, platformTransactionManager))
+                .from(decider()).on("EVEN").to(evenStep(jobRepository, platformTransactionManager)) not needed because looping*//*
                 .end().build();
-    }
+    }*/
 }

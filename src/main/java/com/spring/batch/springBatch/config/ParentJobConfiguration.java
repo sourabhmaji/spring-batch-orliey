@@ -18,12 +18,15 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 public class ParentJobConfiguration {
-
-    @Autowired
     private Job childJob;
+    private JobLauncher jobLauncher;
 
     @Autowired
-    private JobLauncher jobLauncher;
+    public ParentJobConfiguration(Job childJob , JobLauncher jobLauncher){
+      this.childJob = childJob;
+      this.jobLauncher = jobLauncher;
+    }
+
     @Bean
     public Step step13(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
         return new StepBuilder("step13", jobRepository).tasklet(new Tasklet() {
@@ -35,13 +38,13 @@ public class ParentJobConfiguration {
         }, platformTransactionManager).build();
     }
 
-    @Bean
-    public Job parentJob(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
-        Step childJobStep = new JobStepBuilder(new StepBuilder("childJobStep", jobRepository))
-                .job(childJob).launcher(jobLauncher).build();
-
-        return new JobBuilder("parentJob", jobRepository)
-                .start(step13(jobRepository, platformTransactionManager))
-                .next(childJobStep).build();
-    }
+//    @Bean
+//    public Job parentJob(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
+//        Step childJobStep = new JobStepBuilder(new StepBuilder("childJobStep", jobRepository))
+//                .job(childJob).launcher(jobLauncher).build();
+//
+//        return new JobBuilder("parentJob", jobRepository)
+//                .start(step13(jobRepository, platformTransactionManager))
+//                .next(childJobStep).build();
+//    }
 }

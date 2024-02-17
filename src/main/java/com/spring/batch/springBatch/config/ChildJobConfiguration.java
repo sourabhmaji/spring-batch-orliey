@@ -28,10 +28,10 @@ public class ChildJobConfiguration {
                 },platformTransactionManager).build();
     }
 
-    @Bean
-    public Job childJob(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
-        return new JobBuilder("childJob", jobRepository)
-                .start(step12(jobRepository, platformTransactionManager))
-                .build();
-    }
+//    @Bean
+//    public Job childJob(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
+//        return new JobBuilder("childJob", jobRepository)
+//                .start(step12(jobRepository, platformTransactionManager))
+//                .build();
+//    }
 }
