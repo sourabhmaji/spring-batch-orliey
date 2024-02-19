@@ -47,11 +47,11 @@ public class ListenerJobConfiguration {
                 .build();
     }
 
-    @Bean
+/*    @Bean
     public Job job20(JavaMailSender javaMailSender, JobRepository jobRepository, PlatformTransactionManager platformTransactionManager){
         return new JobBuilder("job20", jobRepository)
                 .start(step14(jobRepository, platformTransactionManager))
                 .listener(new JobListener(javaMailSender))
                 .build();
-    }
+    }*/
 }
