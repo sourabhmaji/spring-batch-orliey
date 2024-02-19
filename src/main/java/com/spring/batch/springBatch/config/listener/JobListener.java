@@ -34,7 +34,7 @@ public class JobListener implements JobExecutionListener {
 
     private SimpleMailMessage getMailMessage(String subject, String text){
        SimpleMailMessage message = new SimpleMailMessage();
-       message.setTo("sourabhkumarmaji2018@gmail.com");
+       message.setTo("jackhill12396@yahoo.com");
        message.setSubject(subject);
        message.setText(text);
        return message;
